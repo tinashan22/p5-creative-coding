@@ -28,7 +28,7 @@ const sketch = (p5: P5) => {
   ];
 
   p5.setup = () => {
-    p5.createCanvas(900, 900, "webgl");
+    p5.createCanvas(600, 400);
     p5.rectMode("center");
     p5.noStroke();
   };
@@ -37,21 +37,37 @@ const sketch = (p5: P5) => {
     p5.background("#0000FF");
     p5.fill("#f1f1f1");
 
-    p5.directionalLight(255, 255, 255, -1, 0, 0);
-    // translate(0, height/2 - (frameCount * 7)%((notes.length)*7+height*3));
-    p5.translate(0, p5.height / 2 - p5.frameCount * 7);
+    // p5.translate(0, p5.height / 2);
+    let amount = p5.int(
+      p5.map(p5.sin(p5.radians(p5.frameCount)), -1, 1, 1, 30)
+    );
+    let step = p5.width / p5.int(amount);
+    p5.translate(step / 2, 0);
 
-    let h = 10;
-
-    for (let i = 0; i < notes.length; i++) {
-      let breite = p5.map(notes[i], 0, 11, 0, p5.width * 0.85);
-
-      p5.push();
-      p5.translate(0, i * h);
-      p5.rotateY(p5.frameCount * 0.01 + i);
-      p5.rect(0, 0, breite, 20);
-      p5.pop();
+    for (let i = 0; i < amount; i++) {
+      p5.ellipse(
+        p5.int(p5.random(p5.width)),
+        p5.int(p5.random(p5.height)),
+        step,
+        step
+      );
     }
+
+    // p5.directionalLight(255, 255, 255, -1, 0, 0);
+    // // translate(0, height/2 - (frameCount * 7)%((notes.length)*7+height*3));
+    // p5.translate(0, p5.height / 2 - p5.frameCount * 7);
+
+    // let h = 10;
+
+    // for (let i = 0; i < notes.length; i++) {
+    //   let breite = p5.map(notes[i], 0, 11, 0, p5.width * 0.85);
+
+    //   p5.push();
+    //   p5.translate(0, i * h);
+    //   p5.rotateY(p5.frameCount * 0.01 + i);
+    //   p5.rect(0, 0, breite, 20);
+    //   p5.pop();
+    // }
   };
 };
 new P5(sketch);

@@ -1,4 +1,4 @@
-import P5, { Image } from "p5";
+import P5 from "p5";
 import "./style.css";
 
 // let img: Image;
@@ -19,7 +19,8 @@ const sketch = (p5: P5) => {
   p5.draw = () => {
     p5.background(0);
     p5.fill("white");
-    p5.text(p5.frameCount, 40, 40);
+    // p5.text(p5.frameCount, 40, 40);
+    p5.box(7, 70, 7);
   };
 };
 

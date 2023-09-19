@@ -1,4 +1,4 @@
-import P5, { Font, Image } from "p5";
+import P5, { Font } from "p5";
 import "./style.css";
 
 // let img: Image;
