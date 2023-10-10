@@ -1,5 +1,4 @@
 import P5 from "p5";
-import "./style.css";
 
 // let img: Image;
 
