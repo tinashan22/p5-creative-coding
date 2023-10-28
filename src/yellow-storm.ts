@@ -1,4 +1,4 @@
-import P5, { Image, Color } from "p5";
+import P5, { Image } from "p5";
 
 let img1: Image;
 let img2: Image;
