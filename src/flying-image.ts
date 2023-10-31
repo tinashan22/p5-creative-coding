@@ -25,10 +25,10 @@ const sketch = (p5: P5) => {
   };
 
   p5.draw = () => {
-    p5.background("white");
+    p5.background("pink");
     // p5.fill("white");
 
-    // p5.directionalLight(0, 0, 0, 0, 1, 0);
+    //p5.directionalLight(255, 255, 255, 0, 1, 0);
     // p5.directionalLight(10, 10, 10, 0, 0, 800);
     // p5.directionalLight(0, 0, 0, -1, 0, 0);
 
@@ -49,7 +49,8 @@ const sketch = (p5: P5) => {
       20
     );
     p5.rotateY(p5.radians(rangeY));
-    p5.translate(-p5.width / 2 + 30, -p5.height / 2, 0);
+    p5.translate(-p5.width / 2 + 60, -p5.height / 2 + 20, 0);
+    p5.scale(1);
 
     for (let x = 0; x < img.width; x++) {
       for (let y = 0; y < img.height; y++) {
@@ -83,7 +84,7 @@ const sketch = (p5: P5) => {
         // );
 
         //determine box size based on brightness
-        let sizeFactor = p5.map(brightness, 0, 135, 1.1, 0);
+        let sizeFactor = p5.map(brightness, 0, 135, 1.3, 0);
         p5.translate(x * tilesW, y * tilesH, depth);
         p5.box(tilesW * sizeFactor, tilesH * sizeFactor, tilesW, 0, 0);
 
