@@ -2,8 +2,6 @@ import P5 from "p5";
 import "./style.css";
 import { drawNoise } from "./noise";
 
-// let img: Image;
-
 const sketch = (p5: P5) => {
   //3D canvas for rasterization in 3D
   p5.setup = () => {
