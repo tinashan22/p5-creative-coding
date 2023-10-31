@@ -25,7 +25,7 @@ const sketch = (p5: P5) => {
   };
 
   p5.draw = () => {
-    p5.background("white");
+    p5.background("pink");
     // p5.fill("white");
 
     //p5.directionalLight(255, 255, 255, 0, 1, 0);
@@ -35,13 +35,18 @@ const sketch = (p5: P5) => {
     //tilesX = img.width; tilesY = img.height
     const tilesH = 750 / img.height;
     const tilesW = 600 / img.width;
-    //rotate before translate to rotate around center of the images
 
-    // p5.rotateX(p5.radians(p5.mouseX / 2));
     p5.lights();
     p5.camera(0, 0, 750);
-    p5.rotateX(p5.radians(20));
-
+    //rotate before translate to rotate around center of the images
+    const rangeY = p5.map(
+      p5.sin(p5.radians(p5.frameCount * 4)),
+      -1,
+      1,
+      -20,
+      20
+    );
+    p5.rotateY(p5.radians(rangeY));
     p5.translate(-p5.width / 2 + 60, -p5.height / 2 + 20, 0);
 
     for (let x = 0; x < img.width; x++) {
@@ -55,23 +60,7 @@ const sketch = (p5: P5) => {
         //determine the z value of the voxel
         let brightness = p5.brightness(color);
 
-        //depth 1 for dark parts flying backwards
-        // let depth = p5.map(
-        //   brightness,
-        //   30,
-        //   255,
-        //   0,
-        //   p5.frameCount * p5.frameCount
-        // );
-
-        //depth 2 for everything fly towards camera
-        let depth = p5.map(
-          brightness,
-          0,
-          255,
-          0,
-          p5.frameCount * p5.frameCount
-        );
+        let depth = p5.map(brightness, 0, 255, -25, 25);
 
         //determine box size based on brightness
         let sizeFactor = p5.map(brightness, 0, 135, 1.3, 0);
